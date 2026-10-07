@@ -1,0 +1,33 @@
+{
+  "name": "pomodoro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.example.pomodorotimer",
+    "productName": "Pomodoro Timer",
+    "copyright": "Copyright © 2025 ${author}",
+    "compression": "maximum",
+    "win": {
+      "target": "nsis",
+      "icon": "assets/app-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "keywords": [],
+  "author": "Solaris",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^36.1.0",
+    "electron-builder": "^26.0.12"
+  }
+}

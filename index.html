@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+ 
+    <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    font-src 'self' https://fonts.gstatic.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    img-src 'self' data: file:;
+    script-src 'self' 'unsafe-inline';
+    media-src 'self' file:;
+  ">
+    <!--<meta  content="default-src 'self' 'unsafe-inline' data:; img-src 'self' data: file:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';">-->
+  
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=VT323&display=swap" rel="stylesheet">
+
+    <title></title>
+    <style>
+      body {
+        
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .container {
+        height: 100vh;
+      }
+      .pageone {
+        background-image: url("pic/background.gif");
+        background-size: cover;
+        position: relative; 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+       
+      }
+      .cloudpic {
+        position: absolute;
+        left: -15%;
+        width: 60%;
+        height: 60%;
+      }
+      .secondcloud {
+        position: absolute;
+        top: 2.5rem;
+        right: -15%;
+        width: 60%;
+        height: 60%;
+      }
+      .cloudpic:hover {
+        animation: move 1s ease-in-out infinite alternate;
+      }
+      .btnimg {
+        position: absolute;
+        filter: drop-shadow(0px 10px 2px #35353549);
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .btnimg:hover {
+        transform: scale(1.1);
+      }
+      .btnimg.selected{
+        filter: drop-shadow(0 0 10px rgba rgb(140, 255, 242) );
+        transform: translateY(-5px);
+      }
+
+      .fiveimg {
+            top: 70%;
+            left: 12rem;
+            height: 100px;
+        }
+        .tenimg {
+            top: 45%;
+            left: 22rem;
+            height: 120px;
+        }
+        .fifteenimg {
+            top: 25%;
+            right: 36rem;
+            height: 155px;
+        }
+        .twentyimg {
+            top: 40%;
+            right: 22rem;
+            height: 170px;
+        }
+        .twentyfiveimg {
+            top: 55%;
+            right: 4rem;
+            height: 200px;
+        }
+      .startbtn {
+        position: absolute; 
+        bottom: 5px;         
+        left: 55rem;         
+        width: auto;
+        height: 25rem;
+        transform: translateY(50%);
+        cursor: pointer;
+        animation: pulse 2s ease-in-out infinite;
+      }
+     
+      .text_container{       
+        position: relative;
+
+
+      }
+      .textone, .textwo {
+        position: absolute;
+        font-family: "VT323", monospace;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 100px;
+        text-align: center;
+        color: #dad3ff;
+        -webkit-text-stroke: 2px #842cffdd;
+        animation: float 3s ease-in-out infinite;    
+      }
+      .textone{
+        top: 50vh;
+        left: 32vw;
+      }
+      .textwo{
+        left: 28vw;
+        
+      }
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+     
+     
+      @keyframes pulse{
+        0%{
+          transform: translateY(50%) scale(1);
+          filter: drop-shadow(0 0 0px #fffd6faa);
+        }
+        50%{ 
+          transform: translateY(50%) scale(1.05);
+          filter: drop-shadow(0 0 15px #fffb00ee);
+        }
+        100%{
+          transform: translateY(50%) scale(1);
+          filter: drop-shadow(0 0 0px #fffd6faa);
+        }
+      }
+
+      .cat {
+        position: absolute;
+        bottom: -50px; 
+        left: 5rem;
+        width: auto;
+        height: 180px;
+      }
+      .selected {
+        transform: scale(1.2);
+        filter: drop-shadow(0 0 20px #00ffd9) brightness(1.2);
+        transition: transform 0.3s, filter 0.3s;
+      }
+
+      /*Page two*/
+      .pagetwo{
+        background-image: url("pic/mountain.gif");
+        background-size: cover;
+        position: relative; 
+        height: 100vh;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+      .stopbtn {
+          position: absolute;
+          height: 200px;
+          left: 2rem;
+          bottom: 0;
+          cursor: pointer;
+          filter: drop-shadow(0 0 15px #f878ffee);
+          transition: transform 0.3s;
+        }
+        .stopbtn:hover {
+            transform: scale(1.1);
+        }
+
+      .timer-card {
+            
+            background-color: rgba(255, 255, 255, 0.491);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            top: 13rem;
+            left: 28rem;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(132, 44, 255, 0.5);
+            text-align: center;
+            width: 400px;
+        }
+        
+      
+            .timer-display {
+              font-family: 'VT323', monospace;
+              font-size: 120px;
+              color: #ffffff;
+              text-shadow: 0 0 10px #842cff, 0 0 20px #842cff;
+              -webkit-text-stroke: 2px #842cffdd;
+              margin-top: 20px;
+            }
+
+    
+
+        .pagethree {
+        background-image: url("pic/kuromi.jpg");
+        background-size:cover;
+        /*background-color: #e0d6ff; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;             
+        padding: 0;
+        text-align: center;
+      }
+
+      .comp_mess {
+        font-family: 'VT323', monospace;
+        font-size: 100px;
+        color: #fefdff;
+        text-shadow: 2px 5px 5px #514564;
+        margin-bottom: 70px;
+        padding-top: 13rem;
+        animation: float 3s ease-in-out infinite; 
+      }
+
+      #comp_stopbtn {
+        font-family: 'VT323', monospace;
+        font-size: 24px;
+        margin-top: 2rem;
+        padding: 10px 20px;
+        border: none;
+        background-color: white;
+        color:  #a15eff;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      #comp_stopbtn:hover {
+        background-color: #6a24cc;
+        color: white;
+      }
+
+      /*Media query
+        @media (max-width: 1200px) {
+
+        .textone, .textwo {font-size: 50px;}
+        .textone{ top:55vh; left: 40vw;}
+        .textwo{ left: 35vw;}
+        .startbtn{
+          left: 12rem;         
+          width: auto;
+          height: 18rem;
+        }
+      }*/
+
+      /**/
+      /* Media Queries pour le responsive */
+  @media (max-width: 1200px) {
+    
+    .textone, .textwo {
+      font-size: 50px;
+    }
+    .textone {
+      top: 55vh;
+      left: 40vw;
+    }
+    .textwo {
+      left: 35vw;
+    }
+    
+    .fiveimg {
+      top: 72%;
+      left: 10rem;
+      height: 80px;
+    }
+    .tenimg {
+      top: 45%;
+      left: 15rem;
+      height: 100px;
+    }
+    .fifteenimg {
+      top: 25%;
+      right: 15rem;
+      height: 120px;
+    }
+    .twentyimg {
+      top: 43%;
+      right: 8rem;
+      height: 130px;
+    }
+    .twentyfiveimg {
+      top: 65%;
+      right: 1rem;
+      height: 150px;
+    }
+    
+    .cat {
+      left: 4rem;
+      height: 120px;
+      bottom: 15px;
+    }
+    
+    .startbtn {
+      left: 12rem;
+      height: 18rem;
+    }
+    
+    /* Page 2 */
+    .timer-card {
+      top: 10rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      padding: 20px;
+    }
+    
+    .timer-display {
+      font-size: 80px;
+    }
+    
+    .stopbtn {
+      height: 150px;
+      left: 2%;
+      transform: translateY(-10%);
+      bottom: 0;
+    }
+    
+    /* Page 3 */
+    .comp_mess {
+      font-size: 60px;
+      padding-top: 8rem;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+   
+    .textone, .textwo {
+      font-size: 40px;
+    }
+    .textone {
+      top: 50vh;
+      left: 50vw;
+      transform: translateX(-50%);
+    }
+    .textwo {
+      left: 50vw;
+      transform: translateX(-50%);
+      top: 40vh;
+    }
+    
+    .fiveimg {
+      top: 60%;
+      left: 2rem;
+      height: 60px;
+    }
+    .tenimg {
+      top: 40%;
+      left: 8rem;
+      height: 70px;
+    }
+    .fifteenimg {
+      top: 25%;
+      right: 15rem;
+      height: 80px;
+    }
+    .twentyimg {
+      top: 35%;
+      right: 5rem;
+      height: 90px;
+    }
+    .twentyfiveimg {
+      top: 50%;
+      right: 1rem;
+      height: 100px;
+    }
+    
+    .cat {
+      left: 2rem;
+      height: 80px;
+    }
+    
+    .startbtn {
+      left: 50%;
+      transform: translateX(-50%);
+      height: 15rem;
+      bottom: 2rem;
+    }
+    
+    /* Page 2 */
+    .timer-card {
+      width: 250px;
+      top: 8rem;
+    }
+    
+    .timer-display {
+      font-size: 60px;
+    }
+    
+    /* Page 3 */
+    .comp_mess {
+      font-size: 40px;
+      padding-top: 6rem;
+    }
+    
+    #comp_stopbtn {
+      font-size: 20px;
+      padding: 8px 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Page 1 */
+    .textone, .textwo {
+      font-size: 30px;
+    }
+    .fifteenimg {
+      top: 25%;
+      right: 25rem;
+      height: 80px;
+    }
+    .twentyfiveimg {
+      top: 50%;
+      right: 1rem;
+      height: 100px;
+    }
+    
+    
+    .btnimg {
+      height: 50px !important;
+    }
+    
+    /* Page 2 */
+    .timer-card {
+      width: 200px;
+      padding: 15px;
+    }
+    
+    .timer-display {
+      font-size: 50px;
+    }
+    
+    /* Page 3 */
+    .comp_mess {
+      font-size: 30px;
+      padding-top: 4rem;
+    }
+  }
+
+  
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    
+     <div class="pageone" id="page1">
+        <div class="text_container">
+          <p class="textone">Pomodoro Timer</p>
+          <p class="textwo">SETUP YOUR TIME :</p>
+        </div>
+        <img class="cloudpic" src="pic/cloud.png" alt="first cloud">
+        <img class="secondcloud" src="pic/cloud.png" alt="second cloud"> 
+        <img class="cat" src="pic/cat.png" alt="" class="cat">
+        <img class="startbtn" id="startbtn" src="pic/start.png" alt="start">
+        <div>
+          <img class="btnimg fiveimg" src="pic/five.png" alt="fiveminutes" data-minute="5">
+          <img class="btnimg tenimg" src="pic/ten.png" alt="ten" data-minute="10">
+          <img class="btnimg fifteenimg" src="pic/fifteen.png" alt="fifteen" data-minute="15">
+          <img class="btnimg twentyimg" src="pic/twenty.png" alt="twenty" data-minute="20">
+          <img class="btnimg twentyfiveimg" src="pic/twentyfive.png" data-minute="25">
+        </div> 
+    
+      </div>
+
+
+      <div class="pagetwo" id="page2">
+              <div class="timer-card">
+                  <h2 style="  font-family: VT323, monospace; font-weight: 480; font-style: normal; color: rgb(221, 213, 255); font-size: 65px; margin-top: 15px; padding-bottom: 5px; -webkit-text-stroke: 2px #842cffdd;">
+                    TIME REMAINING</h2>
+                  <div class="timer-display" id="timer"></div>              
+              </div>
+              <img class="stopbtn" src="pic/stop.png" alt="stop" id="stopbtn">
+      </div>
+      
+      <!--completion screen-->
+
+      <div class="pagethree" id="page3" style="display: none;">
+          <div class="comp_mess">Time to take a break ! </div>
+          <button id="comp_stopbtn"> Stop Music </button>
+          <audio id="alarm" src="pic/lofi.mp3"></audio>
+      </div>
+    
+
+    </div>
+    
+    <script>
+
+      const startbtn = document.getElementById('startbtn');
+      const page1 = document.getElementById('page1');
+      const page2 = document.getElementById('page2');
+      const page3 = document.getElementById('page3');
+      const stopbtn = document.getElementById('stopbtn');
+      const timerDisplay = document.getElementById('timer');
+      const timeButtons = document.querySelectorAll('.btnimg');
+      const alarm = document.getElementById('alarm');
+      let countdown;
+      let selectedTime; 
+  
+  
+      updateTimerDisplay();
+
+      startbtn.addEventListener('click', () => {
+        page1.style.display = 'none';
+        page2.style.display = 'block';
+        
+        const selectedBtn = document.querySelector('.btnimg.selected');
+        if (selectedBtn) {
+            selectedTime = parseInt(selectedBtn.dataset.minute) * 60;
+        } else {
+            selectedTime = 25 * 60; 
+        }
+        updateTimerDisplay(); 
+        startTimer();
+      });
+
+
+  
+      stopbtn.addEventListener('click', () => {
+          clearInterval(countdown);
+          page2.style.display = 'none';
+          page1.style.display = 'block';
+      });
+  
+      // Gestion de la sélection du temps
+      timeButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              // Retire la sélection de tous les boutons
+              timeButtons.forEach(btn => btn.classList.remove('selected'));
+              // Ajoute la sélection au bouton cliqué
+              this.classList.add('selected');
+              // Met à jour le temps sélectionné (en secondes)
+              selectedTime = parseInt(this.dataset.minute) * 60;
+              // Met à jour immédiatement l'affichage
+              updateTimerDisplay();
+          });
+      });
+      document.getElementById('comp_stopbtn').addEventListener('click', () => {
+        alarm.pause();
+        alarm.currentTime = 0; // Remet la musique au début
+        page3.style.display = 'none';
+        page1.style.display = 'block'; // Retour à l'écran principal
+      });
+      function startTimer() {
+        clearInterval(countdown);
+        countdown = setInterval(() => {
+          selectedTime--;
+          updateTimerDisplay();
+          
+          if (selectedTime <= 0) {
+            clearInterval(countdown);
+            alarm.play(); 
+            page2.style.display = 'none';
+            page1.style.display = 'none';
+            page3.style.display = 'block';
+         
+            const selectedBtn = document.querySelector('.btnimg.selected');
+            selectedTime = selectedBtn ? parseInt(selectedBtn.dataset.minute) * 60 : 25 * 60;
+            updateTimerDisplay();
+          }
+        }, 1000);
+      }
+  
+      function updateTimerDisplay() {
+          const minutes = Math.floor(selectedTime / 60);
+          const seconds = selectedTime % 60;
+          timerDisplay.textContent = 
+              `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      }
+  </script>
+      
+  </body>
+</html>
